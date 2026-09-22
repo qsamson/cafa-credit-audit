@@ -5,7 +5,7 @@ Code, prompts, and data for *Where Does Bias Enter the Pipeline? A Theoretical a
 CAFA formalizes an agentic credit pipeline as a composition of stage-level decision functions and localizes **where** a fairness violation enters, using stage truncation, propagation coefficients, and bias-locus attribution.
 
 <p align="center">
-  <img src="assets/CAFA_Framework.png" alt="CAFA framework" width="100%">
+  <img src="CAFA-Framework.png" alt="CAFA framework" width="100%">
 </p>
 
 ## Key findings
