@@ -41,10 +41,10 @@ CAFA formalizes an agentic credit pipeline as a composition of stage-level decis
 
 A credit decision is split across four agents, which exchange structured JSON only. No agent sees another's raw reasoning text.
 
-1. **Planner** — reads the serialized applicant profile and extracts the factors relevant to creditworthiness, each with the applicant's actual value. It makes no decision.
-2. **Risk Analyst** — weighs the listed factors, favorable and unfavorable alike, and assigns a risk level of LOW, MEDIUM, or HIGH with a one-sentence summary. It makes no approval decision.
-3. **Policy Guard** — checks the risk summary against three explicit severity conditions and reports each as true or false. The decision is then computed in code: deny if any condition holds, approve otherwise. This is where bias concentrates.
-4. **Writer** — produces the rationale a loan officer would see, based only on the decision, policy notes, and risk level. It cannot change the decision.
+1. **Planner** : reads the serialized applicant profile and extracts the factors relevant to creditworthiness, each with the applicant's actual value. It makes no decision.
+2. **Risk Analyst** : weighs the listed factors, favorable and unfavorable alike, and assigns a risk level of LOW, MEDIUM, or HIGH with a one-sentence summary. It makes no approval decision.
+3. **Policy Guard** : checks the risk summary against three explicit severity conditions and reports each as true or false. The decision is then computed in code: deny if any condition holds, approve otherwise. This is where bias concentrates.
+4. **Writer** : produces the rationale a loan officer would see, based only on the decision, policy notes, and risk level. It cannot change the decision.
 
 Two backbone configurations are evaluated: **homogeneous**, where one model fills all four roles, and **heterogeneous**, where a different model family fills each role by round-robin rotation.
 
