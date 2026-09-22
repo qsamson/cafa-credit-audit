@@ -6,24 +6,13 @@ Ahmed Ben Ayed, Samson Quaye, Calvin Nobles
 
 Code, prompts, and data to reproduce every table and figure in the paper.
 
-<p align="center">
-  <img src="CAFA-Framework.png" alt="CAFA framework" width="100%">
-</p>
-
 ---
 
 ## Overview
 
-Fairness audits of LLM credit systems evaluate a single final decision. When the decision is split across specialized agents, that view cannot say **which stage** introduced a disparity.
+Fairness audits of LLM credit systems evaluate a single final decision. When that decision is split across specialized agents, such an audit cannot say **which stage** introduced a disparity.
 
-CAFA formalizes an agentic credit pipeline as a composition of stage-level decision functions and localizes where a fairness violation enters:
-
-1. **Stage truncation** — recovers the counterfactual decision each stage would reach on its own, by routing its output through a neutral policy
-2. **Propagation coefficients** — estimate how much of a violation each transition transmits downstream
-3. **Bias-locus attribution** — decomposes the final fairness shift into per-stage contributions
-4. **Rationale alignment** — measures whether the written explanation reflects the reasoning recorded upstream
-
-The audited pipeline has four stages: **Planner → Risk Analyst → Policy Guard → Writer**, exchanging structured JSON only.
+CAFA formalizes an agentic credit pipeline as a composition of stage-level decision functions, proves bounds on how a fairness violation is suppressed, persists, or amplifies across stages, and localizes where the violation enters.
 
 ## Key findings
 
@@ -41,6 +30,32 @@ The audited pipeline has four stages: **Planner → Risk Analyst → Policy Guar
 | Protected attributes | Sex, age (German, Taiwan); race, sex (HMDA) |
 | Baseline ladder | Zero-shot, few-shot, CoT, single-agent multitask, MASCA (9 agents), CAFA homogeneous, CAFA heterogeneous |
 | Conditions | Clean, ε=0.10 perturbation, proxy-discrimination probe |
+
+---
+
+<p align="center">
+  <img src="CAFA-Framework.png" alt="CAFA framework" width="85%">
+</p>
+
+## The CAFA pipeline
+
+A credit decision is split across four agents, which exchange structured JSON only. No agent sees another's raw reasoning text.
+
+1. **Planner** — reads the serialized applicant profile and extracts the factors relevant to creditworthiness, each with the applicant's actual value. It makes no decision.
+2. **Risk Analyst** — weighs the listed factors, favorable and unfavorable alike, and assigns a risk level of LOW, MEDIUM, or HIGH with a one-sentence summary. It makes no approval decision.
+3. **Policy Guard** — checks the risk summary against three explicit severity conditions and reports each as true or false. The decision is then computed in code: deny if any condition holds, approve otherwise. This is where bias concentrates.
+4. **Writer** — produces the rationale a loan officer would see, based only on the decision, policy notes, and risk level. It cannot change the decision.
+
+Two backbone configurations are evaluated: **homogeneous**, where one model fills all four roles, and **heterogeneous**, where a different model family fills each role by round-robin rotation.
+
+## How the audit works
+
+1. **Stage truncation** — recovers the counterfactual decision each stage would reach on its own, by routing its output through a neutral policy
+2. **Propagation coefficients** — estimate how much of a violation each transition transmits downstream
+3. **Bias-locus attribution** — decomposes the final fairness shift into per-stage contributions
+4. **Rationale alignment** — measures whether the written explanation reflects the reasoning recorded upstream
+
+---
 
 ## Quick Start
 
@@ -124,7 +139,7 @@ Each script checkpoints per applicant and resumes automatically, so interrupted 
 - **Decisions are computed in code**, not by the model: the Policy Guard emits three boolean condition flags, and the pipeline denies if any flag is true. This removes flag/decision inconsistency by construction.
 - **Protected attributes are never perturbed.** Only mutable financial fields are modified.
 - **Stage inputs are structured only.** No stage sees another's raw reasoning text.
-- Model outputs in `results/checkpoints/` are the exact runs reported in the paper, so `analysis.py` reproduces the published numbers bit for bit.
+- Model outputs in `results/checkpoints/` are the exact runs reported in the paper, so `analysis.py` reproduces the published numbers.
 
 ## Citation
 
