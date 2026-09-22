@@ -50,10 +50,10 @@ Two backbone configurations are evaluated: **homogeneous**, where one model fill
 
 ## How the audit works
 
-1. **Stage truncation** — recovers the counterfactual decision each stage would reach on its own, by routing its output through a neutral policy
-2. **Propagation coefficients** — estimate how much of a violation each transition transmits downstream
-3. **Bias-locus attribution** — decomposes the final fairness shift into per-stage contributions
-4. **Rationale alignment** — measures whether the written explanation reflects the reasoning recorded upstream
+1. **Stage truncation** : recovers the counterfactual decision each stage would reach on its own, by routing its output through a neutral policy
+2. **Propagation coefficients** : estimate how much of a violation each transition transmits downstream
+3. **Bias-locus attribution** : decomposes the final fairness shift into per-stage contributions
+4. **Rationale alignment** : measures whether the written explanation reflects the reasoning recorded upstream
 
 ---
 
