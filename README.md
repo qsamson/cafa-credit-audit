@@ -3,6 +3,7 @@
 **Where Does Bias Enter the Pipeline? A Theoretical and Empirical Audit of Cascading Fairness in LLM-Powered Multi-Agent Credit Decisioning**
 
 Ahmed Ben Ayed, Samson Quaye, Calvin Nobles
+
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![Python 3.11+](https://img.shields.io/badge/python-3.11+-blue.svg)](https://www.python.org/downloads/)
 
