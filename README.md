@@ -6,6 +6,12 @@ Ahmed Ben Ayed, Samson Quaye, Calvin Nobles
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![Python 3.11+](https://img.shields.io/badge/python-3.11+-blue.svg)](https://www.python.org/downloads/)
+[![PyTorch](https://img.shields.io/badge/PyTorch-2.14-ee4c2c.svg)](https://pytorch.org/)
+[![LLM](https://img.shields.io/badge/LLM-5%20backbones-8e44ad.svg)](#experimental-scope)
+[![Agentic AI](https://img.shields.io/badge/Agentic%20AI-4--stage%20pipeline-16a085.svg)](#the-cafa-pipeline)
+[![Fairness](https://img.shields.io/badge/fairness-DI%20%7C%20SPD%20%7C%20EOD%20%7C%20AOD-e67e22.svg)](#how-the-audit-works)
+[![Datasets](https://img.shields.io/badge/datasets-German%20%7C%20Taiwan%20%7C%20HMDA-2980b9.svg)](#experimental-scope)
+[![Reproducible](https://img.shields.io/badge/results-reproducible-brightgreen.svg)](#quick-start)
 
 Code, prompts, and data to reproduce every table and figure in the paper.
 
